@@ -12,7 +12,7 @@ import os
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'a1b2c3d4e5f678901234567890abcdef0123456789abcdef012345')
 
-genai.configure(api_key="AIzaSyC90IKUxsCklSmoAVWstXfxm0tBT1YfRJo")
+genai.configure(api_key=os.environ.get('AIzaSyC90IKUxsCklSmoAVWstXfxm0tBT1YfRJo'))
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 users = {}
