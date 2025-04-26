@@ -6,3 +6,4 @@ requests
 langchain-community
 langchain-google-genai
 opencv-python
+gunicorn
