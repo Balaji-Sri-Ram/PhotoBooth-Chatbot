@@ -1,8 +1,9 @@
 flask
+Pillow
+google-generativeai
 langchain
 requests
-Pillow
 langchain-community
 langchain-google-genai
 opencv-python
-google-generativeai
+gunicorn
