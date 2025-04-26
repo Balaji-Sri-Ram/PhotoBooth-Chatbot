@@ -1,9 +1,23 @@
+To Run
+
 C:\Users\ramup\OneDrive\Desktop\PhotoBooth
 
-
 venv\Scripts\activate
-
 
 python app.py
 
 
+
+
+To Updates the changes in your code or in your files to git hub.
+
+git add .
+git commit -m "The commit message"
+git push
+
+
+
+
+My PhotoBooth Chatbot (render) link:
+
+https://photobooth-chatbot.onrender.com
