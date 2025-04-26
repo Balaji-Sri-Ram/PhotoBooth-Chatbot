@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container{
+    position: relative;
+    width: 800px; /* Decreased width */
+    height: 500px; /* Decreased height */
+    background: #fff;
+    margin: 15px; /* Adjusted margin */
+    border-radius: 25px; /* Slightly smaller border radius */
+    box-shadow: 0 0 25px rgba(0, 0, 0, .2); /* Slightly smaller shadow */
+    overflow: hidden;
+}
+
+    .container h1{
+        font-size: 40px; /* Decreased font size */
+        margin: -8px 0; /* Adjusted margin */
+    }
+
+    .container h2{ /* For toggle panel headings */
+        font-size: 35px; /* Decreased font size */
+        margin-bottom: 15px; /* Adjusted margin */
+    }
+
+    .container p{
+        font-size: 16px; /* Decreased font size */
+        margin: 12px 0; /* Adjusted margin */
+    }
+
+form{ width: 100%; }
+
+.form-box{
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    color: #333;
+    text-align: center;
+    padding: 30px; /* Decreased padding */
+    z-index: 1;
+    transition: .6s ease-in-out 1.2s, visibility 0s 1s;
+}
+
+    .container.active .form-box{ right: 50%; }
+
+    .form-box.register{ visibility: hidden; }
+        .container.active .form-box.register{ visibility: visible; }
+
+.input-box{
+    position: relative;
+    margin: 25px 0; /* Decreased margin */
+}
+
+    .input-box input{
+        width: 100%;
+        padding: 14px 40px 14px 15px; /* Decreased padding */
+        background: #eee;
+        border-radius: 6px; /* Smaller border radius */
+        border: 2px solid transparent;
+        outline: none;
+        font-size: 14px; /* Decreased font size */
+        color: #333;
+        font-weight: 500;
+        transition: border-color 0.3s ease;
+    }
+
+    .input-box input:focus {
+        border-color: #8f6eff;
+    }
+
+        .input-box input::placeholder{
+            color: #888;
+            font-weight: 400;
+            font-size: 13px; /* Decreased placeholder size */
+        }
+
+    .input-box i{
+        position: absolute;
+        right: 15px; /* Decreased right position */
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 18px; /* Decreased font size */
+        color: #8f6eff;
+    }
+
+.forgot-link{ margin: -12px 0 10px; /* Decreased margin */ }
+    .forgot-link a{
+        font-size: 14px; /* Decreased font size */
+        color: #333;
+    }
+
+.btn{
+    width: 100%;
+    height: 45px; /* Decreased height */
+    background: #8f6eff;
+    border-radius: 6px; /* Smaller border radius */
+    box-shadow: 0 0 8px rgba(0, 0, 0, .1); /* Smaller shadow */
+    border: none;
+    cursor: pointer;
+    font-size: 17px; /* Decreased font size */
+    color: #fff;
+    font-weight: 600;
+   
+}
+
+.social-icons{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Added some top margin */
+}
+
+    .social-icons a{
+        display: inline-flex;
+        padding: 8px; /* Decreased padding */
+        border: 2px solid #ccc;
+        border-radius: 6px; /* Smaller border radius */
+        font-size: 20px; /* Decreased font size */
+        color: #333;
+        margin: 0 6px; /* Decreased margin */
+    }
+
+.toggle-box{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+    .toggle-box::before{
+        content: '';
+        position: absolute;
+        left: -250%;
+        width: 300%;
+        height: 100%;
+        background: #8f6eff;
+        border-radius: 125px; /* Adjusted border radius */
+        z-index: 2;
+        transition: 1.8s ease-in-out;
+    }
+
+        .container.active .toggle-box::before{ left: 50%; }
+
+.toggle-panel{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    transition: .6s ease-in-out;
+}
+
+    .toggle-panel.toggle-left{
+        left: 0;
+        transition-delay: 1.2s;
+    }
+        .container.active .toggle-panel.toggle-left{
+            left: -50%;
+            transition-delay: .6s;
+        }
+
+    .toggle-panel.toggle-right{
+        right: -50%;
+        transition-delay: .6s;
+    }
+        .container.active .toggle-panel.toggle-right{
+            right: 0;
+            transition-delay: 1.2s;
+        }
+
+    .toggle-panel p{ margin-bottom: 15px; /* Decreased margin */ }
+
+    .toggle-panel .btn{
+        width: 140px; /* Decreased width */
+        height: 40px; /* Decreased height */
+        background: transparent;
+        border: 2px solid #fff;
+        box-shadow: none;
+        font-size: 14px; /* Decreased font size */
+    }
+
+@media screen and (max-width: 650px){
+    .container{ height: calc(100vh - 30px); }
+
+    .form-box{
+        bottom: 0;
+        width: 100%;
+        height: 60%; /* Decreased height */
+        padding: 20px; /* Further decreased padding */
+    }
+
+        .container.active .form-box{
+            right: 0;
+            bottom: 40%; /* Adjusted bottom */
+        }
+
+    .toggle-box::before{
+        left: 0;
+        top: -220%; /* Adjusted top */
+        width: 100%;
+        height: 250%; /* Adjusted height */
+        border-radius: 25vw; /* Adjusted border radius */
+    }
+
+        .container.active .toggle-box::before{
+            left: 0;
+            top: 60%; /* Adjusted top */
+        }
+
+        .container.active .toggle-panel.toggle-left{
+            left: 0;
+            top: -40%; /* Adjusted top */
+        }
+
+    .toggle-panel{
+        width: 100%;
+        height: 40%; /* Adjusted height */
+    }
+        .toggle-panel.toggle-left{ top: 0; }
+        .toggle-panel.toggle-right{
+            right: 0;
+            bottom: -40%; /* Adjusted bottom */
+        }
+
+            .container.active .toggle-panel.toggle-right{ bottom: 0; }
+}
+
+@media screen and (max-width: 400px){
+    .form-box { padding: 15px; }
+
+    .toggle-panel h2{font-size: 20px; } /* Decreased font size for smaller screens */
+    .toggle-panel p{ font-size: 12px; } /* Decreased font size for smaller screens */
+    .toggle-panel .btn{ width: 120px; height: 35px; font-size: 12px; } /* Smaller button */
+}

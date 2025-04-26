@@ -1,0 +1,9 @@
+C:\Users\ramup\OneDrive\Desktop\PhotoBooth
+
+
+venv\Scripts\activate
+
+
+python app.py
+
+

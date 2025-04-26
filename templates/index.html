@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>PhotoBooth Buddy</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    {% if 'username' not in session %}
+        <script>
+            window.location.href = "/login";
+        </script>
+    {% else %}
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-icon"><i style="color: #8f6eff" class="fas fa-camera"></i></span> <span class="logo-text">PhotoBoothBuddy</span>
+            <a href="/logout" class="log"><i class="fas fa-sign-out-alt" style="color: #8f6eff; padding-right: px;"></i> Logout</a>
+        </div>
+    </nav>
+
+    <main class="main">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <script>
+                    {% for category, message in messages %}
+                        if ("{{ category }}" === "success") {
+                            alert("{{ message }}");
+                        }
+                        // You can add handling for other categories if needed
+                    {% endfor %}
+                </script>
+            {% endif %}
+        {% endwith %}
+        <section class="intro">
+            <h1 class="split-heading">
+                Your <span class="highlight-block">AI Photo</span><br>
+                <span class="highlight-block1">Booth</span> Assistant
+            </h1>
+            <p>Create perfect photos with the help of our AI assistant. Get creative suggestions, apply filters, and make your memories shine!</p>
+            <div class="btn-group">
+                <button class="btn primary1" onclick="startCamera()"><i class="fas fa-camera"></i> Try Now</button>
+            </div>
+        </section>
+
+        <section class="chat-box">
+            <div class="chat-card">
+                <div class="chat-header">
+                    <i class="fas fa-wand-magic-sparkles" id="icon-wrapper"></i>
+                    <div class="sparkle">
+                        <h3> PhotoBooth Buddy</h3>
+                        <span class="status">Always online</span>
+                    </div>
+
+                </div>
+                <div class="chat-messages" id="chat-messages">
+                    <div class="msg bot">Hey there! 👋 I'm your PhotoBooth Buddy! How can I help you today?</div>
+                </div>
+                <div class="chatbox-footer">
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;" />
+
+                    <button onclick="document.getElementById('imageInput').click()" class="btn secondary"><i class="fas fa-upload"></i> Upload</button>
+                    <button onclick="analyzeImage()" class="btn primary"><i class="fas fa-brain"></i> Analyze</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <section class="camera-section" id="cameraSection" style="display: none;">
+        <h3>Camera Mode</h3>
+        <video id="video" autoplay playsinline></video>
+        <div class="camera-buttons">
+            <button onclick="capturePhoto()" class="btn primary"><i class="fas fa-camera"></i> Capture</button>
+            <button onclick="stopCamera()" class="btn secondary"><i class="fas fa-times"></i> Cancel</button>
+        </div>
+        <canvas id="canvas" style="display: none;"></canvas>
+    </section>
+    {% endif %}
+</body>
+</html>

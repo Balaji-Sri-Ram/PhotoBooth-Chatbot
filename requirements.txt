@@ -1,0 +1,8 @@
+flask
+langchain
+requests
+Pillow
+langchain-community
+langchain-google-genai
+opencv-python
+google-generativeai

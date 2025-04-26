@@ -1,0 +1,292 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #f3f0ff;
+    color: #333;
+}
+
+.navbar {
+    background: white;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #1c1c1c;
+    display: flex;
+    align-items: center;
+    padding: 16px 0px;
+}
+
+.logo-icon {
+    font-size: 2.0rem;
+    margin-right: 6px;
+    
+}
+.logo-text{
+    font-size: 1.5rem;
+}
+.log{
+    text-decoration: none;
+    margin-left: 1100px;
+    font-size: 17px;
+}
+.log:hover{
+    text-decoration: underline;
+
+}
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 4rem 6rem;
+    gap: 2rem;
+}
+
+.intro {
+    margin-top: 100px;
+    max-width: 550px;
+}
+
+.intro h1 {
+    font-size: 3.2rem;
+    margin-bottom: 1rem;
+}
+
+.split-heading {
+    line-height: 1.2;
+}
+
+.highlight-block1 {
+    display: inline-block;
+    background: linear-gradient(to right, #8f6eff, #4fa0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.highlight-block {
+    display: inline-block;
+    background: linear-gradient(to right, #835dff, #ac47f8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.intro p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn.primary {
+    margin-left: 20px;
+    background: #8f6eff;
+    color: white;
+}
+.btn.primary1 {
+    margin-left: 150px;
+    background: #8f6eff;
+    color: white;
+}
+
+.btn.primary:hover {
+    background: #7a5de5;
+}
+
+.btn.primary1:hover {
+    background: #7a5de5;
+}
+
+.btn.secondary {
+    background: white;
+    border: 1px solid #ccc;
+    color: #333;
+}
+
+.chat-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.chat-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    max-width: 500px;    /* Slightly wider */
+    width: 100%;
+    height: 500px;         /* 💡 Added more height */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 0 20px;
+}
+
+.chat-header {
+    background: #f2f2f5; /* Light gray background */
+    border-bottom: 1px solid #eee;
+    padding: 10px; /* Only padding for the content */
+    display: flex;
+    gap: 12px;
+}
+
+.sparkle{
+    display: grid;
+}
+
+#icon-wrapper {
+    background-color: #8f6eff;  /* violet background */
+    color: white;               /* white icon */
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;         /* circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+
+.chat-header h3 {
+    margin-top: 0.1rem;
+    margin-bottom: 0.2rem;
+    font-size: 1.1rem;
+    margin-right: 5px;
+}
+
+.status {
+    font-size: 0.85rem;
+    color: green;
+}
+
+.chat-messages {
+    padding: 1rem;
+    flex-grow: 1;          /* Fills available space */
+    overflow-y: auto;
+}
+
+
+.msg.bot,
+.msg.user {
+    background: #e0efff;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    max-width: 90%;
+}
+
+.msg.user {
+    background: #dcfce7;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.chatbox-footer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    border-top: 1px solid #eee;
+    background-color: #fff;
+    border-radius: 0 0 20px 20px;
+}
+
+.chatbox-footer button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.chatbox-footer .btn.primary {
+    background-color: #7c3aed;
+    color: white;
+}
+
+.chatbox-footer .btn.secondary {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+/* Camera Section */
+.camera-section {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.camera-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.camera-section video {
+    width: 90%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.camera-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Timestamp */
+.timestamp {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 4px;
+    text-align: right;
+}
+
+/* Spinner Loader */
+.spinner {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border: 2px solid #ccc;
+    border-top-color: #7c3aed;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
