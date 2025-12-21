@@ -34,4 +34,4 @@
 
 ## 🌐 Live Demo
 
-Want to try it out? Visit the live chatbot here 👉 [https://photobooth‑chatbot.onrender.com](https://photobooth‑chatbot.onrender.com)
+Want to try it out? Visit the live chatbot here 👉 [https://photobooth‑chatbot.onrender.com](https://photobooth-chatbot.onrender.com)
