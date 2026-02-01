@@ -116,12 +116,12 @@ def analyze_captured_image():
         image_part = pil_to_gemini_part(image)
 
         prompt = (
-            "You are a professional photo analysis assistant. "
-            "Examine the uploaded photo and describe the following: "
-            "1. Any notable individuals or celebrities present, with brief identification and context if recognizable. "
-            "2. The number and appearance of people, including facial expressions and attire. "
-            "3. Visible objects and background details. "
-            "Conclude with practical suggestions to improve the photo’s quality, composition, or appeal."
+            "You are a professional photo analysis assistant."
+            "Examine the uploaded photo and provide the following analysis:"
+            "1. Count and describe all visible people, including facial expressions, clothing, and notable physical features."
+            "2. If any celebrity or well-known individual is detected, identify them and provide a brief background — including their profession, notable achievements, and why they might be recognizable."
+            "3. Describe other visible objects, surroundings, and the background setting in detail."
+            "Finally, suggest practical ways to improve the overall quality, composition, or appeal of the photo."
         )
 
         response = model.generate_content([prompt, image_part])
