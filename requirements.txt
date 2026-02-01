@@ -1,9 +1,6 @@
 flask
 Pillow
 google-generativeai
-langchain
-requests
-langchain-community
-langchain-google-genai
-opencv-python
+
+
 gunicorn

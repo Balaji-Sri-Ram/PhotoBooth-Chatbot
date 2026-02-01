@@ -12,7 +12,7 @@ import os
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'a1b2c3d4e5f678901234567890abcdef0123456789abcdef012345')
 
-genai.configure(api_key=os.environ.get('AIzaSyC90IKUxsCklSmoAVWstXfxm0tBT1YfRJo'))
+genai.configure(api_key=os.environ.get('GOOGLE_API_KEY', 'AIzaSyC90IKUxsCklSmoAVWstXfxm0tBT1YfRJo'))
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 users = {}
@@ -84,12 +84,12 @@ def analyze_uploaded_image():
         image_part = pil_to_gemini_part(image)
 
         prompt = (
-            "You are a professional photo analysis assistant. "
-            "Examine the uploaded photo and describe the following: "
-            "1. The number and appearance of people, including facial expressions and attire. "
-            "2. Any notable individuals or celebrities present, with brief identification and context if recognizable. "
-            "3. Visible objects and background details. "
-            "Conclude with practical suggestions to improve the photo’s quality, composition, or appeal."
+            "You are a professional photo analysis assistant."
+            "Examine the uploaded photo and provide the following analysis:"
+            "1. Count and describe all visible people, including facial expressions, clothing, and notable physical features."
+            "2. If any celebrity or well-known individual is detected, identify them and provide a brief background — including their profession, notable achievements, and why they might be recognizable."
+            "3. Describe other visible objects, surroundings, and the background setting in detail."
+            "Finally, suggest practical ways to improve the overall quality, composition, or appeal of the photo."
         )
 
         response = model.generate_content([prompt, image_part])
