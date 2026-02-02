@@ -37,14 +37,27 @@ function analyzeUploadedFile(file) {
         method: "POST",
         body: formData,
     })
-        .then((res) => res.json())
+        .then(async (res) => {
+            let data;
+            try {
+                data = await res.json();
+            } catch (e) {
+                // If response is not JSON (e.g. 504 Gateway Timeout HTML), throw status text
+                throw new Error(`Server Error: ${res.status} ${res.statusText}`);
+            }
+
+            if (!res.ok) {
+                throw new Error(data.response || `Server Error: ${res.status}`);
+            }
+            return data;
+        })
         .then((data) => {
             removeAnalyzingMsg();
             appendMessage("bot", data.response);
         })
         .catch((err) => {
             removeAnalyzingMsg();
-            appendMessage("bot", "🚫 Error analyzing image.");
+            appendMessage("bot", `🚫 ${err.message}`);
             console.error(err);
         });
 }
@@ -58,14 +71,26 @@ function analyzeCapturedImage(imageData) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ image: imageData })
     })
-        .then(response => response.json())
+        .then(async (res) => {
+            let data;
+            try {
+                data = await res.json();
+            } catch (e) {
+                throw new Error(`Server Error: ${res.status} ${res.statusText}`);
+            }
+
+            if (!res.ok) {
+                throw new Error(data.response || `Server Error: ${res.status}`);
+            }
+            return data;
+        })
         .then(data => {
             removeAnalyzingMsg();
             appendMessage("bot", data.response || "No response from AI.");
         })
         .catch(error => {
             removeAnalyzingMsg();
-            appendMessage("bot", "🚫 Error analyzing image.");
+            appendMessage("bot", `🚫 ${error.message}`);
             console.error("Camera analyze error:", error);
         });
 }
@@ -134,7 +159,7 @@ function capturePhoto() {
     const video = document.getElementById('video');
     const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
-    
+
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
 
