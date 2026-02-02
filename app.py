@@ -12,8 +12,8 @@ import os
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'a1b2c3d4e5f678901234567890abcdef0123456789abcdef012345')
 
-genai.configure(api_key=os.environ.get('GOOGLE_API_KEY', 'AIzaSyC90IKUxsCklSmoAVWstXfxm0tBT1YfRJo'))
-model = genai.GenerativeModel('gemini-1.5-flash')
+genai.configure(api_key=os.environ.get('GOOGLE_API_KEY', 'AIzaSyDxiPCvWmCWxKBGPe8gkPZyUfoxhb8aKB0'))
+model = genai.GenerativeModel('gemini-2.0-flash')
 
 users = {}
 
