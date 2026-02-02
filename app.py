@@ -9,6 +9,8 @@ import hashlib
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
+import time
+
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'a1b2c3d4e5f678901234567890abcdef0123456789abcdef012345')
 
@@ -24,6 +26,22 @@ def login_required(f):
             return redirect(url_for('login'))
         return f(*args, **kwargs)
     return decorated_function
+
+def generate_with_retry(model, content, retries=3, initial_delay=5):
+    """Generates content with retry logic for rate limits."""
+    delay = initial_delay
+    for attempt in range(retries):
+        try:
+            return model.generate_content(content)
+        except Exception as e:
+            if "429" in str(e) or "Quota exceeded" in str(e):
+                if attempt < retries - 1:
+                    print(f"Quota exceeded, retrying in {delay} seconds...")
+                    time.sleep(delay)
+                    delay *= 2  # Exponential backoff
+                    continue
+            raise e
+    return None # Should not reach here due to raise
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -92,7 +110,7 @@ def analyze_uploaded_image():
             "Finally, suggest practical ways to improve the overall quality, composition, or appeal of the photo."
         )
 
-        response = model.generate_content([prompt, image_part])
+        response = generate_with_retry(model, [prompt, image_part])
 
         username = session.get('username', 'User')
         response_text = f"Hello {username}, here’s what I see in your photo:\n\n{response.text}"
@@ -124,7 +142,7 @@ def analyze_captured_image():
             "Finally, suggest practical ways to improve the overall quality, composition, or appeal of the photo."
         )
 
-        response = model.generate_content([prompt, image_part])
+        response = generate_with_retry(model, [prompt, image_part])
 
         username = session.get('username', 'User')
         response_text = f"Hello {username}, here’s what I see in your photo:\n\n{response.text}"
