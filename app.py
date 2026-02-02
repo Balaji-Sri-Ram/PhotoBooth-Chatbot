@@ -27,14 +27,28 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-def generate_with_retry(model, content, retries=3, initial_delay=5):
+import re
+
+def generate_with_retry(model, content, retries=5, initial_delay=5):
     """Generates content with retry logic for rate limits."""
     delay = initial_delay
     for attempt in range(retries):
         try:
             return model.generate_content(content)
         except Exception as e:
-            if "429" in str(e) or "Quota exceeded" in str(e):
+            error_msg = str(e)
+            if "429" in error_msg or "Quota exceeded" in error_msg:
+                # Try to parse the specific retry delay from the error message
+                # Pattern looks like: retry_delay {\n  seconds: 33\n}
+                retry_match = re.search(r'retry_delay\s*{\s*seconds:\s*(\d+)', error_msg)
+                
+                if retry_match:
+                    wait_time = int(retry_match.group(1)) + 2 # Add a small buffer
+                    print(f"Quota exceeded, waiting {wait_time}s as requested by API...")
+                    time.sleep(wait_time)
+                    # Don't increase delay exponentially if we have a specific wait time
+                    continue 
+                
                 if attempt < retries - 1:
                     print(f"Quota exceeded, retrying in {delay} seconds...")
                     time.sleep(delay)
